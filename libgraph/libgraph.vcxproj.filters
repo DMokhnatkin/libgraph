@@ -15,12 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\libgraph.cpp">
+    <ClCompile Include="src\SampleGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\libgraph.h">
+    <ClInclude Include="src\include\libgraph\IGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\SampleGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\private\windll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

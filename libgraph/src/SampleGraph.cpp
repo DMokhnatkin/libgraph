@@ -1,5 +1,5 @@
-#include <libgraph/igraph.h>
-#include <libgraph/samplegraph.h>
+#include <libgraph/IGraph.h>
+#include <libgraph/SampleGraph.h>
 
 libgraph::SampleGraph::SampleGraph(){
 
