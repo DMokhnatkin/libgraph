@@ -7,6 +7,9 @@ namespace libgraph{
 	public:
 		SampleGraph();
 		~SampleGraph();
-		int getNumber() const;
+		int getVertexCount();
+		IVertex *const createVertex(IVertex*);
+		void deleteVertex(IVertex*);
+		IConnector *const getConnector();
 	};
 }
