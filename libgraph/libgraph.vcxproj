@@ -66,19 +66,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\data_storages\FreeIdCollection.cpp" />
-    <ClCompile Include="src\SampleGraph.cpp" />
+    <ClCompile Include="src\DataStorages\FreeIdCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\libgraph\data_storages\FreeIdCollection.h" />
+    <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h" />
     <ClInclude Include="src\include\libgraph\IConnector.h" />
     <ClInclude Include="src\include\libgraph\IDataStorage.h" />
     <ClInclude Include="src\include\libgraph\IEdge.h" />
     <ClInclude Include="src\include\libgraph\IGraph.h" />
-    <ClInclude Include="src\include\libgraph\IVertexData.h" />
     <ClInclude Include="src\include\libgraph\private\constants.h" />
+    <ClInclude Include="src\include\libgraph\private\decls.h" />
     <ClInclude Include="src\include\libgraph\private\windll.h" />
-    <ClInclude Include="src\include\libgraph\SampleGraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
