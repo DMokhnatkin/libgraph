@@ -6,12 +6,11 @@
 #include <libgraph/DataStorages/FreeIdCollection.h>
 
 using namespace libgraph;
-
 class FreeIdCollectionTest : public ::testing::Test {
 protected:
-	FreeIdCollection *coll;
+	FreeIdCollection<int> *coll;
 	void SetUp() {
-		coll = new FreeIdCollection();
+		coll = new FreeIdCollection<int>();
 	}
 	void TearDown() {
 		delete coll;

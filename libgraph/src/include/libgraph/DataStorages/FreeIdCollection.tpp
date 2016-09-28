@@ -2,20 +2,23 @@
 
 using namespace libgraph;
 
-libgraph::FreeIdCollection::FreeIdCollection() {
-	
+template <typename T>
+libgraph::FreeIdCollection<T>::FreeIdCollection() {
+
 }
 
-bool FreeIdCollection::isInCollection(vertex_id_t id)
-{
+template <typename T>
+bool FreeIdCollection<T>::isInCollection(vertex_id_t id) {
 	return id < _data.size() && _data[id] != nullptr;
 }
 
-vertex_id_t FreeIdCollection::getVertexCount() {
+template <typename T>
+vertex_id_t FreeIdCollection<T>::getVertexCount() {
 	return _vertex_ct;
 }
 
-vertex_id_t FreeIdCollection::createVertex(void *data) {
+template <typename T>
+vertex_id_t FreeIdCollection<T>::createVertex(T data) {
 	vertex_id_t id;
 	if (_freeId.empty()){
 		id = _vertex_ct;
@@ -29,15 +32,17 @@ vertex_id_t FreeIdCollection::createVertex(void *data) {
 	return id;
 }
 
-void* FreeIdCollection::getData(vertex_id_t id)
-{
+template <typename T>
+T FreeIdCollection<T>::getData(vertex_id_t id) {
 	if (!isInCollection(id))
 		return nullptr;
 	return _data[id];
 }
 
-bool FreeIdCollection::deleteVertex(vertex_id_t v) {
-	if (!isInCollection(v)) 
+template <typename T>
+bool FreeIdCollection<T>::deleteVertex(vertex_id_t v) {
+	// if v is not in collection, return false
+	if (!isInCollection(v))
 		return false;
 	if (v == _data.size() - 1)
 		// if v is last in vector, reduce vector size
@@ -51,8 +56,7 @@ bool FreeIdCollection::deleteVertex(vertex_id_t v) {
 	return true;
 }
 
-void FreeIdCollection::clear()
-{
+void FreeIdCollection::clear() {
 	_data.clear();
 	_freeId.clear();
 	_vertex_ct = 0;
