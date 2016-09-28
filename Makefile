@@ -11,6 +11,9 @@ $(PROJECTS): %:
 test: $(PROJECTS)
 	$(MAKE) -C $(PWD)/tests test
 
+debug-test: $(PROJECTS)
+	$(MAKE) -C $(PWD)/tests debug
+
 clean:
 	for PROJECT in $(PROJECTS); do \
 		$(MAKE) -C $(PWD)/$$PROJECT clean; \
