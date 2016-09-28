@@ -1,6 +1,6 @@
-#include <cstddef>
+﻿#include <cstddef>
 
-#include <libgraph/IVertex.h>
+#include <libgraph/IVertexData.h>
 #include <libgraph/IEdge.h>
 #include <libgraph/IConnector.h>
 #include <libgraph/IGraph.h>
@@ -19,11 +19,11 @@ int SampleGraph::getVertexCount(){
 	return 0;
 }
 
-IVertex *const SampleGraph::createVertex(IVertex *v){
-	return NULL;
+vertex_id_t SampleGraph::createVertex(IVertexData *v){
+	return 0;
 }
 
-void SampleGraph::deleteVertex(IVertex *v){
+bool SampleGraph::deleteVertex(vertex_id_t v){
 
 }
 

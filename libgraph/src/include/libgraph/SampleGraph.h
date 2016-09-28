@@ -8,8 +8,8 @@ namespace libgraph{
 		SampleGraph();
 		~SampleGraph();
 		int getVertexCount();
-		IVertex *const createVertex(IVertex*);
-		void deleteVertex(IVertex*);
+		vertex_id_t createVertex(IVertexData*);
+		bool deleteVertex(vertex_id_t);
 		IConnector *const getConnector();
 	};
 }

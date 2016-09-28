@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 
-#include <libgraph/IVertex.h>
+#include <libgraph/IVertexData.h>
 #include <libgraph/IEdge.h>
 #include <libgraph/IConnector.h>
 #include <libgraph/IGraph.h>
@@ -26,7 +26,7 @@ TEST_F(TestGraph, test1){
 }
 
 TEST_F(TestGraph, test2){
-	ASSERT_TRUE(graph->createVertex(NULL) == NULL);
+	ASSERT_TRUE(graph->createVertex(NULL) == 0);
 }
 
 int main(int argc, char *argv[]){

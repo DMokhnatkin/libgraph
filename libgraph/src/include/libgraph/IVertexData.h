@@ -3,9 +3,9 @@
 #include <libgraph/private/windll.h>
 
 namespace libgraph{
-	class libgraph_API IVertex{
+	class libgraph_API IVertexData{
 	public:
-		virtual ~IVertex(){ };
+		virtual ~IVertexData(){ };
 	};
 }
 

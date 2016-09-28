@@ -18,6 +18,9 @@
     <ClCompile Include="src\SampleGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\data_storages\FreeIdCollection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\libgraph\IGraph.h">
@@ -27,6 +30,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\private\windll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\IEdge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\IConnector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\IVertexData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\private\constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\IDataStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\data_storages\FreeIdCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
