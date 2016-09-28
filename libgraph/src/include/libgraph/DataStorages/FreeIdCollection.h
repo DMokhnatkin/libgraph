@@ -1,11 +1,12 @@
 #pragma once
+
 #include <queue>
 #include <vector>
 
 #include <libgraph/private/windll.h>
-
 #include <libgraph/private/constants.h>
-#include <libgraph/IVertexData.h>
+#include <libgraph/private/decls.h>
+
 #include <libgraph/IDataStorage.h>
 
 namespace libgraph {

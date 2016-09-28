@@ -1,4 +1,6 @@
-#include <libgraph/data_storages/FreeIdCollection.h>
+#include <cstddef>
+
+#include <libgraph/DataStorages/FreeIdCollection.h>
 
 using namespace libgraph;
 

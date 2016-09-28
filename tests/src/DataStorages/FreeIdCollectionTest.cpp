@@ -1,9 +1,8 @@
 #include <iostream>
 
-
 #include <gtest/gtest.h>
 
-#include <libgraph/data_storages/FreeIdCollection.h>
+#include <libgraph/DataStorages/FreeIdCollection.h>
 using namespace libgraph;
 
 class FreeIdCollectionTest : public ::testing::Test {
