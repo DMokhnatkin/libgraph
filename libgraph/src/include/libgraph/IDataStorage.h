@@ -2,6 +2,7 @@
 
 #include <libgraph/private/windll.h>
 #include <libgraph/private/constants.h>
+#include <libgraph/private/decls.h>
 
 namespace libgraph {
 	class libgraph_API IDataStorage {
