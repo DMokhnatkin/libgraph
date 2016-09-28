@@ -1,14 +1,18 @@
 #pragma once
 
-namespace libgraph {
-	class IVertexData;
+namespace libgraph{
+		
+	template <typename T>
 	class IDataStorage;
+
+	template <typename T>
 	class FreeIdCollection;
-	class IConnector;
+	template <typename T>
 	class IDataStorage;
-	class SampleGraph;
+	template <typename T>
 	class IGraph;
-	class IVertexData;
+
 	class IEdge;
+	class IConnector;
 
 }

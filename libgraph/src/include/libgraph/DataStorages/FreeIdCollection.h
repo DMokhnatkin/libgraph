@@ -10,16 +10,19 @@
 #include <libgraph/IDataStorage.h>
 
 namespace libgraph {
-	class libgraph_API FreeIdCollection : public IDataStorage {
+	template <typename T>
+	class libgraph_API FreeIdCollection : public IDataStorage<T> {
 	private:
-		std::vector<IVertexData*> _data;
+		std::vector<T> _data;
 		std::queue<vertex_id_t> _freeId;
 		vertex_id_t _vertex_ct = 0;
 	public:
 		FreeIdCollection();
 		virtual int getVertexCount();
-		virtual vertex_id_t createVertex(IVertexData*);
+		virtual vertex_id_t createVertex(T);
 		virtual bool deleteVertex(vertex_id_t);
 		virtual ~FreeIdCollection() { };
 	};
 }
+
+#include <libgraph/DataStorages/FreeIdCollection.tpp>

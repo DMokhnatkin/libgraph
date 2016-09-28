@@ -4,15 +4,18 @@
 
 using namespace libgraph;
 
-libgraph::FreeIdCollection::FreeIdCollection() {
-	
+template <typename T>
+libgraph::FreeIdCollection<T>::FreeIdCollection() {
+
 }
 
-vertex_id_t FreeIdCollection::getVertexCount() {
+template <typename T>
+vertex_id_t FreeIdCollection<T>::getVertexCount() {
 	return _vertex_ct;
 }
 
-vertex_id_t FreeIdCollection::createVertex(IVertexData *data) {
+template <typename T>
+vertex_id_t FreeIdCollection<T>::createVertex(T data) {
 	vertex_id_t id;
 	if (_freeId.empty()){
 		id = _vertex_ct;
@@ -22,9 +25,11 @@ vertex_id_t FreeIdCollection::createVertex(IVertexData *data) {
 		_freeId.pop();
 		_data[id] = data;
 	}
+	return id;
 }
 
-bool FreeIdCollection::deleteVertex(vertex_id_t v) {
+template <typename T>
+bool FreeIdCollection<T>::deleteVertex(vertex_id_t v) {
 	// if v is not in collection, return false
 	if (v >= _data.size() || _data[v] == NULL)
 		return false;
