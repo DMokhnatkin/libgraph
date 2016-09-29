@@ -6,7 +6,7 @@
 
 namespace libgraph {
 	template <typename T>
-	class libgraph_API IDataStorage {
+	class IDataStorage {
 	public:
 		virtual vertex_id_t getVertexCount() = 0;
 		virtual vertex_id_t createVertex(T) = 0;

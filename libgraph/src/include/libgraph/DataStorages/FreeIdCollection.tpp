@@ -4,7 +4,7 @@
 using namespace libgraph;
 
 template <typename T>
-libgraph::FreeIdCollection<T>::FreeIdCollection() {
+FreeIdCollection<T>::FreeIdCollection() {
 
 }
 

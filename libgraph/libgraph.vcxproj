@@ -60,6 +60,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_DEBUG;_WINDOWS;_USRDLL;libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NDEBUG;_WINDOWS;_USRDLL;libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</RuntimeTypeInfo>
+      <CppLanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -69,7 +70,6 @@
   <ItemGroup>
     <ClCompile Include="src\ConnectManagers\ConnectManager.cpp" />
     <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorage.cpp" />
-    <ClCompile Include="src\DataStorages\FreeIdCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\libgraph\ConnectManagers\IConnectManager.h" />
@@ -83,6 +83,9 @@
     <ClInclude Include="src\include\libgraph\private\constants.h" />
     <ClInclude Include="src\include\libgraph\private\decls.h" />
     <ClInclude Include="src\include\libgraph\private\windll.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

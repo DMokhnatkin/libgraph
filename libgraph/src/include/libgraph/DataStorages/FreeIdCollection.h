@@ -3,7 +3,6 @@
 #include <unordered_set>
 #include <vector>
 
-#include <libgraph/private/windll.h>
 #include <libgraph/private/constants.h>
 #include <libgraph/private/decls.h>
 
@@ -11,7 +10,7 @@
 
 namespace libgraph {
 	template <typename T>
-	class libgraph_API FreeIdCollection : public IDataStorage<T> {
+	class FreeIdCollection : public IDataStorage<T> {
 	private:
 		std::vector<T> data;
 		std::unordered_set<vertex_id_t> freeId;

@@ -1,9 +1,6 @@
 #pragma once
 
 namespace libgraph{
-		
-	template <typename T>
-	class IDataStorage;
 
 	template <typename T>
 	class FreeIdCollection;
@@ -14,7 +11,7 @@ namespace libgraph{
 
 	class IEdge;
 	
-	// Storages
+	// Connect Storages
 	class IConnectStorage;
 	class AdjacencyMatrixConnectStorage;
 
