@@ -1,6 +1,6 @@
 #pragma once
 
-#include <deque>
+#include <unordered_set>
 #include <vector>
 
 #include <libgraph/private/windll.h>
@@ -10,19 +10,22 @@
 #include <libgraph/IDataStorage.h>
 
 namespace libgraph {
-	class libgraph_API FreeIdCollection : public IDataStorage {
+	template <typename T>
+	class libgraph_API FreeIdCollection : public IDataStorage<T> {
 	private:
-		std::vector<void*> _data;
-		std::deque<vertex_id_t> _freeId;
-		vertex_id_t _vertex_ct = 0;
+		std::vector<T> data;
+		std::unordered_set<vertex_id_t> freeId;
+		vertex_id_t vertex_ct = 0;
 	public:
 		FreeIdCollection();
-		virtual int getVertexCount();
-		virtual vertex_id_t createVertex(void*);
-		virtual bool isInCollection(vertex_id_t);
-		virtual void* getData(vertex_id_t);
+		virtual vertex_id_t getVertexCount();
+		virtual vertex_id_t createVertex(T);
+		virtual bool contains(vertex_id_t);
+		virtual T getData(vertex_id_t);
 		virtual bool deleteVertex(vertex_id_t);
 		virtual void clear();
 		virtual ~FreeIdCollection() { };
 	};
 }
+
+#include <libgraph/DataStorages/FreeIdCollection.tpp>

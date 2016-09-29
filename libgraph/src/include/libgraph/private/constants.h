@@ -2,5 +2,5 @@
 
 namespace libgraph {
 	// Type of vertex id
-	typedef int vertex_id_t;
+	typedef unsigned int vertex_id_t;
 }

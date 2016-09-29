@@ -5,6 +5,7 @@
 #include <libgraph/private/decls.h>
 
 namespace libgraph{
+	template<typename T>
 	class libgraph_API IGraph{
 	public:
 		virtual IDataStorage * const getData() = 0;
