@@ -7,10 +7,8 @@
 namespace libgraph{
 	class libgraph_API IGraph{
 	public:
-		virtual int getVertexCount() = 0;
-		virtual vertex_id_t createVertex(void*) = 0;
-		virtual bool deleteVertex(vertex_id_t) = 0;
-		virtual IConnector *const getConnector() = 0;
+		virtual IDataStorage * const getData() = 0;
+		virtual IConnectStorage * const getConnectStorage() = 0;
 		virtual ~IGraph(){ };
 	};
 }

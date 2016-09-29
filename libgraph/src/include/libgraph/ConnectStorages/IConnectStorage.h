@@ -12,8 +12,9 @@ namespace libgraph {
 	private:
 	public:
 		virtual bool connect(vertex_id_t v1, vertex_id_t v2) = 0;
-		virtual bool disConnect(vertex_id_t v1, vertex_id_t v2) = 0;
+		virtual bool disconnect(vertex_id_t v1, vertex_id_t v2) = 0;
 		virtual bool areConnected(vertex_id_t v1, vertex_id_t v2) = 0;
+		virtual void clear() = 0;
 		virtual ~IConnectStorage() { };
 	};
 }

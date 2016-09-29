@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <libgraph/ConnectorStorages/AdjacencyMatrixConnectStorage.h>
+#include <libgraph/ConnectStorages/AdjacencyMatrixConnectStorage.h>
 
 using namespace libgraph;
 
@@ -84,4 +84,32 @@ TEST_F(AdjacencyMatrixConnectStorageTest, testConnectDisconnect) {
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(3, 1));
 	ASSERT_TRUE(coll->areConnected(4, 5));
+}
+
+TEST_F(AdjacencyMatrixConnectStorageTest, testSetVertexCt) {
+	coll->connect(1, 3);
+	coll->connect(3, 1);
+	coll->connect(4, 5);
+
+	ASSERT_TRUE(coll->areConnected(1, 3));
+	ASSERT_TRUE(coll->areConnected(3, 1));
+	ASSERT_TRUE(coll->areConnected(4, 5));
+	ASSERT_FALSE(coll->areConnected(6, 7));
+
+	// Increase size
+	coll->setVertexCt(20);
+	ASSERT_TRUE(coll->areConnected(1, 3));
+	ASSERT_TRUE(coll->areConnected(3, 1));
+	ASSERT_TRUE(coll->areConnected(4, 5));
+	ASSERT_FALSE(coll->areConnected(6, 7));
+
+	// Reduce size
+	coll->connect(15, 16);
+	ASSERT_TRUE(coll->areConnected(15, 16));
+	coll->setVertexCt(10);
+	ASSERT_TRUE(coll->areConnected(1, 3));
+	ASSERT_TRUE(coll->areConnected(3, 1));
+	ASSERT_TRUE(coll->areConnected(4, 5));
+	ASSERT_FALSE(coll->areConnected(6, 7));
+	ASSERT_FALSE(coll->areConnected(15, 16));
 }

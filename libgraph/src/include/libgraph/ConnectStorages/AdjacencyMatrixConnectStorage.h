@@ -4,7 +4,7 @@
 #include <libgraph/private/windll.h>
 #include <libgraph/private/constants.h>
 #include <libgraph/private/decls.h>
-#include <libgraph/ConnectorStorages/IConnectStorage.h>
+#include <libgraph/ConnectStorages/IConnectStorage.h>
 
 namespace libgraph {
 	class libgraph_API AdjacencyMatrixConnectStorage : public IConnectStorage {
@@ -24,6 +24,8 @@ namespace libgraph {
 		virtual bool disconnect(vertex_id_t v1, vertex_id_t v2);
 
 		virtual bool areConnected(vertex_id_t v1, vertex_id_t v2);
+
+		virtual void clear();
 
 		/// Set new vertex count. It will copy current data array, so complexity is O(vertexCt^2)
 		virtual void setVertexCt(vertex_id_t newCt);

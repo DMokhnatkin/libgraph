@@ -1,4 +1,4 @@
-#include <libgraph/ConnectorStorages/AdjacencyMatrixConnectStorage.h>
+#include <libgraph/ConnectStorages/AdjacencyMatrixConnectStorage.h>
 
 using namespace libgraph;
 
@@ -37,18 +37,28 @@ bool AdjacencyMatrixConnectStorage::areConnected(vertex_id_t v1, vertex_id_t v2)
 	return data[v1 * vertexCt + v2] != 0;
 }
 
+void AdjacencyMatrixConnectStorage::clear() {
+	std::fill(data, data + vertexCt*vertexCt, 0);
+}
+
 void libgraph::AdjacencyMatrixConnectStorage::setVertexCt(vertex_id_t newCt) {
 	vertex_id_t *newData = new vertex_id_t[newCt*newCt];
 	std::fill(newData, newData + newCt * newCt, 0);
 	if (data == nullptr)
 		this->data = newData;
 	else {
+		// calc area to copy
+		vertex_id_t copySize = vertexCt;
+		if (newCt < copySize)
+			copySize = newCt;
 		// copy old array
-		for (vertex_id_t i = 0; i < vertexCt; i++) {
-			for (vertex_id_t j = 0; j < vertexCt; j++) {
-				newData[i * vertexCt + j] = data[i * vertexCt + j];
+		for (vertex_id_t i = 0; i < copySize; i++) {
+			for (vertex_id_t j = 0; j < copySize; j++) {
+				newData[i * newCt + j] = data[i * vertexCt + j];
 			}
 		}
+		delete data;
+		data = newData;
 	}
 	this->vertexCt = newCt;
 }
