@@ -18,6 +18,12 @@
     <ClCompile Include="src\DataStorages\FreeIdCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\libgraph\IGraph.h">
@@ -27,9 +33,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\IEdge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\libgraph\IConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\private\constants.h">
@@ -42,6 +45,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\ConnectStorages\AdjacencyMatrixConnectStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\ConnectStorages\IConnectStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\ConnectManagers\ConnectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\ConnectManagers\IConnectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

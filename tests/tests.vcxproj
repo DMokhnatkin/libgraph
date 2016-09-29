@@ -122,6 +122,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp" />
+    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorageTest.cpp" />
     <ClCompile Include="src\DataStorages\FreeIdCollectionTest.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>

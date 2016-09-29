@@ -59,6 +59,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS;_USRDLL;libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_DEBUG;_WINDOWS;_USRDLL;libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NDEBUG;_WINDOWS;_USRDLL;libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -66,11 +67,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp" />
+    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorage.cpp" />
     <ClCompile Include="src\DataStorages\FreeIdCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\libgraph\ConnectManagers\IConnectManager.h" />
+    <ClInclude Include="src\include\libgraph\ConnectStorages\AdjacencyMatrixConnectStorage.h" />
+    <ClInclude Include="src\include\libgraph\ConnectStorages\IConnectStorage.h" />
+    <ClInclude Include="src\include\libgraph\ConnectManagers\ConnectManager.h" />
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h" />
-    <ClInclude Include="src\include\libgraph\IConnector.h" />
     <ClInclude Include="src\include\libgraph\IDataStorage.h" />
     <ClInclude Include="src\include\libgraph\IEdge.h" />
     <ClInclude Include="src\include\libgraph\IGraph.h" />
