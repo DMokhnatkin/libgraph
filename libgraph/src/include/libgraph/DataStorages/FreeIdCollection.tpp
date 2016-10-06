@@ -8,16 +8,30 @@ FreeIdCollection<T>::FreeIdCollection() {
 
 }
 
+/**
+* \brief Check if given id is in collection.
+* \param id element id to check.
+* \return true if exists, false if not.
+*/
 template <typename T>
 bool FreeIdCollection<T>::contains(vertex_id_t id) {
 	return id < data.size() && freeId.count(id) == 0;
 }
 
+/**
+* \brief Get elements count.
+* \return Number of elements in collection.
+*/
 template <typename T>
 vertex_id_t FreeIdCollection<T>::getVertexCount() {
 	return vertex_ct;
 }
 
+/**
+* \brief Create element with given data.
+* \param data Data to store in element.
+* \return ID of given element.
+*/
 template <typename T>
 vertex_id_t FreeIdCollection<T>::createVertex(T data) {
 	vertex_id_t id;
@@ -33,6 +47,12 @@ vertex_id_t FreeIdCollection<T>::createVertex(T data) {
 	return id;
 }
 
+/**
+* \brief Get data from given element id.
+* \param id Element id.
+* \throw std::invalid_argument If key in not in collection.
+* \return Data if key exists in collection.
+*/
 template <typename T>
 T FreeIdCollection<T>::getData(vertex_id_t id) {
 	if (!contains(id))
@@ -40,6 +60,11 @@ T FreeIdCollection<T>::getData(vertex_id_t id) {
 	return data[id];
 }
 
+/**
+* \brief Delete element from collection by id.
+* \param v Id of element to delete.
+* \return False if element is not in collection, true if deletion is successful.
+*/
 template <typename T>
 bool FreeIdCollection<T>::deleteVertex(vertex_id_t v) {
 	// if v is not in collection, return false
@@ -56,6 +81,9 @@ bool FreeIdCollection<T>::deleteVertex(vertex_id_t v) {
 	return true;
 }
 
+/**
+* \brief Clear collection.
+*/
 template <typename T>
 void FreeIdCollection<T>::clear() {
 	data.clear();
