@@ -68,23 +68,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp" />
-    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorage.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\include\libgraph\ConnectManagers\IConnectManager.h" />
-    <ClInclude Include="src\include\libgraph\ConnectStorages\AdjacencyMatrixConnectStorage.h" />
-    <ClInclude Include="src\include\libgraph\ConnectStorages\IConnectStorage.h" />
-    <ClInclude Include="src\include\libgraph\ConnectManagers\ConnectManager.h" />
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h" />
+    <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h" />
+    <ClInclude Include="src\include\libgraph\Connectors\IConnector.h" />
+    <ClInclude Include="src\include\libgraph\Globals.h" />
     <ClInclude Include="src\include\libgraph\IDataStorage.h" />
-    <ClInclude Include="src\include\libgraph\IEdge.h" />
     <ClInclude Include="src\include\libgraph\IGraph.h" />
     <ClInclude Include="src\include\libgraph\private\constants.h" />
     <ClInclude Include="src\include\libgraph\private\decls.h" />
     <ClInclude Include="src\include\libgraph\private\windll.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

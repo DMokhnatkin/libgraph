@@ -3,38 +3,39 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <libgraph/ConnectStorages/AdjacencyMatrixConnectStorage.h>
+#include <libgraph/Connectors/BaseConnector.h>
+#include <libgraph/Globals.h>
 
 using namespace libgraph;
 
-class AdjacencyMatrixConnectStorageTest : public ::testing::Test {
+class BaseConnectorTest : public ::testing::Test {
 protected:
-	AdjacencyMatrixConnectStorage *coll;
+	BaseConnector<EmptyValue> *coll;
 	void SetUp() {
-		coll = new AdjacencyMatrixConnectStorage(10);
+		coll = new BaseConnector<EmptyValue>();
 	}
 	void TearDown() {
 		delete coll;
 	}
 };
 
-TEST_F(AdjacencyMatrixConnectStorageTest, testConnect) {
-	ASSERT_TRUE(coll->connect(1, 3));
+TEST_F(BaseConnectorTest, testConnect) {
+	coll->connect(1, 3, EmptyValue());
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(3, 1));
 	ASSERT_FALSE(coll->areConnected(4, 5));
 
-	ASSERT_TRUE(coll->connect(4, 5));
+	coll->connect(4, 5, EmptyValue());
 	ASSERT_TRUE(coll->areConnected(4, 5));
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(6, 7));
 }
 
-TEST_F(AdjacencyMatrixConnectStorageTest, testDisconnect) {
-	coll->connect(1, 3);
-	coll->connect(3, 1);
-	coll->connect(4, 5);
-	coll->connect(6, 7);
+TEST_F(BaseConnectorTest, testDisconnect) {
+	coll->connect(1, 3, EmptyValue());
+	coll->connect(3, 1, EmptyValue());
+	coll->connect(4, 5, EmptyValue());
+	coll->connect(6, 7, EmptyValue());
 
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_TRUE(coll->areConnected(3, 1));
@@ -54,13 +55,35 @@ TEST_F(AdjacencyMatrixConnectStorageTest, testDisconnect) {
 	ASSERT_TRUE(coll->areConnected(6, 7));
 }
 
-TEST_F(AdjacencyMatrixConnectStorageTest, testConnectDisconnect) {
-	coll->connect(1, 3);
+TEST_F(BaseConnectorTest, testEdgeIdCreation) {
+	ASSERT_EQ(coll->connect(1, 3, EmptyValue()), 0);
+	ASSERT_EQ(coll->connect(3, 1, EmptyValue()), 1);
+	coll->disconnect(1, 3);
+	ASSERT_EQ(coll->connect(4, 5, EmptyValue()), 0);
+	coll->disconnect(4, 5);
+	ASSERT_EQ(coll->connect(6, 7, EmptyValue()), 0);
+}
+
+TEST_F(BaseConnectorTest, testDisconnectById) {
+	coll->connect(1, 3, EmptyValue()); // EdgeId = 0
+	coll->connect(3, 1, EmptyValue()); // EdgeId = 1
+	coll->connect(4, 5, EmptyValue()); // EdgeId = 2
+
+	ASSERT_FALSE(coll->disconnect(1, 3, 1));
+	ASSERT_TRUE(coll->disconnect(1, 3, 0));
+
+	ASSERT_FALSE(coll->disconnect(2, 6, 1));
+	ASSERT_FALSE(coll->disconnect(4, 5, 1));
+	ASSERT_TRUE(coll->disconnect(4, 5, 2));
+}
+
+TEST_F(BaseConnectorTest, testConnectDisconnect) {
+	coll->connect(1, 3, EmptyValue());
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(3, 1));
 	ASSERT_FALSE(coll->areConnected(4, 5));
 
-	coll->connect(3, 1);
+	coll->connect(3, 1, EmptyValue());
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_TRUE(coll->areConnected(3, 1));
 	ASSERT_FALSE(coll->areConnected(4, 5));
@@ -70,12 +93,12 @@ TEST_F(AdjacencyMatrixConnectStorageTest, testConnectDisconnect) {
 	ASSERT_TRUE(coll->areConnected(3, 1));
 	ASSERT_FALSE(coll->areConnected(4, 5));
 
-	coll->connect(4, 5);
+	coll->connect(4, 5, EmptyValue());
 	ASSERT_FALSE(coll->areConnected(1, 3));
 	ASSERT_TRUE(coll->areConnected(3, 1));
 	ASSERT_TRUE(coll->areConnected(4, 5));
 
-	coll->connect(1, 3);
+	coll->connect(1, 3, EmptyValue());
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_TRUE(coll->areConnected(3, 1));
 	ASSERT_TRUE(coll->areConnected(4, 5));
@@ -84,32 +107,4 @@ TEST_F(AdjacencyMatrixConnectStorageTest, testConnectDisconnect) {
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(3, 1));
 	ASSERT_TRUE(coll->areConnected(4, 5));
-}
-
-TEST_F(AdjacencyMatrixConnectStorageTest, testSetVertexCt) {
-	coll->connect(1, 3);
-	coll->connect(3, 1);
-	coll->connect(4, 5);
-
-	ASSERT_TRUE(coll->areConnected(1, 3));
-	ASSERT_TRUE(coll->areConnected(3, 1));
-	ASSERT_TRUE(coll->areConnected(4, 5));
-	ASSERT_FALSE(coll->areConnected(6, 7));
-
-	// Increase size
-	coll->setVertexCt(20);
-	ASSERT_TRUE(coll->areConnected(1, 3));
-	ASSERT_TRUE(coll->areConnected(3, 1));
-	ASSERT_TRUE(coll->areConnected(4, 5));
-	ASSERT_FALSE(coll->areConnected(6, 7));
-
-	// Reduce size
-	coll->connect(15, 16);
-	ASSERT_TRUE(coll->areConnected(15, 16));
-	coll->setVertexCt(10);
-	ASSERT_TRUE(coll->areConnected(1, 3));
-	ASSERT_TRUE(coll->areConnected(3, 1));
-	ASSERT_TRUE(coll->areConnected(4, 5));
-	ASSERT_FALSE(coll->areConnected(6, 7));
-	ASSERT_FALSE(coll->areConnected(15, 16));
 }

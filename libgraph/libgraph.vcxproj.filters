@@ -15,21 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="src\include\libgraph\IGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\private\windll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\libgraph\IEdge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\private\constants.h">
@@ -44,20 +33,18 @@
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\libgraph\ConnectStorages\AdjacencyMatrixConnectStorage.h">
+    <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\libgraph\ConnectStorages\IConnectStorage.h">
+    <ClInclude Include="src\include\libgraph\Connectors\IConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\libgraph\ConnectManagers\ConnectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\include\libgraph\ConnectManagers\IConnectManager.h">
+    <ClInclude Include="src\include\libgraph\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
+    <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
   </ItemGroup>
 </Project>

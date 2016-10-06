@@ -2,7 +2,6 @@
 
 #include <libgraph/private/windll.h>
 #include <libgraph/private/constants.h>
-#include <libgraph/private/decls.h>
 
 namespace libgraph {
 	template <typename T>

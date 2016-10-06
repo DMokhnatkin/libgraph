@@ -4,7 +4,6 @@
 #include <vector>
 
 #include <libgraph/private/constants.h>
-#include <libgraph/private/decls.h>
 
 #include <libgraph/IDataStorage.h>
 
@@ -17,11 +16,11 @@ namespace libgraph {
 		vertex_id_t vertex_ct = 0;
 	public:
 		FreeIdCollection();
-		virtual vertex_id_t getVertexCount();
-		virtual vertex_id_t createVertex(T);
+		virtual vertex_id_t getVertexCount() override;
+		virtual vertex_id_t createVertex(T) override;
 		virtual bool contains(vertex_id_t);
 		virtual T getData(vertex_id_t);
-		virtual bool deleteVertex(vertex_id_t);
+		virtual bool deleteVertex(vertex_id_t) override;
 		virtual void clear();
 		virtual ~FreeIdCollection() { };
 	};

@@ -21,10 +21,13 @@
     <ClCompile Include="src\DataStorages\FreeIdCollectionTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorageTest.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Connectors\BaseConnectorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

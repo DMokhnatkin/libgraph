@@ -2,14 +2,14 @@
 
 #include <libgraph/private/windll.h>
 #include <libgraph/private/constants.h>
-#include <libgraph/private/decls.h>
+
+#include <libgraph/Connectors/IConnector.h>
 
 namespace libgraph{
-	template<typename T>
+	template<typename edgeVal_t>
 	class libgraph_API IGraph{
 	public:
-		virtual IDataStorage * const getData() = 0;
-		virtual IConnectStorage * const getConnectStorage() = 0;
+		virtual IConnector<edgeVal_t> & getConnector() = 0;
 		virtual ~IGraph(){ };
 	};
 }
