@@ -87,6 +87,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>libgraph_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,8 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ConnectManagers\ConnectManager.cpp" />
-    <ClCompile Include="src\ConnectStorages\AdjacencyMatrixConnectStorageTest.cpp" />
+    <ClCompile Include="src\Connectors\BaseConnectorTest.cpp" />
     <ClCompile Include="src\DataStorages\FreeIdCollectionTest.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
