@@ -11,20 +11,11 @@
 #include <libgraph/Globals.h>
 
 namespace libgraph {
-	struct pair_hash {
-		template <typename T1, typename T2>
-		std::size_t operator () (const std::pair<T1, T2> &p) const {
-			auto h1 = std::hash<T1>{}(p.first);
-			auto h2 = std::hash<T2>{}(p.second);
-			return h1 ^ h2;
-		}
-	};
-
-	template <typename edgeVal_t>
-	class BaseConnector : public IConnector<edgeVal_t> {
+	template <typename _EdgeVal>
+	class BaseConnector : public IConnector<_EdgeVal> {
 	private:
-		FreeIdCollection<typename  edgeVal_t> *edges;
-		std::unordered_map<std::pair<vertex_id_t, vertex_id_t>, std::unordered_set<edge_id_t>, pair_hash> *connections;
+		FreeIdCollection<typename  _EdgeVal> *edges;
+		std::unordered_map<vertex_id_t, std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>> *connections;
 	public:
 		BaseConnector();
 
@@ -35,7 +26,7 @@ namespace libgraph {
 		 * \param edgeVal some value to add to created edge.
 		 * \return an id of created edge. Id is unique for all collection.
 		 */
-		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, edgeVal_t edgeVal) override;
+		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) override;
 
 		/**
 		 * \brief Remove all edges between two vertices.  
@@ -78,14 +69,34 @@ namespace libgraph {
 		 * \param edgeId an id of edge. (In this connector is unique, so it's enough to get value)
 		 * \return value which is saved in edge
 		 */
-		virtual edgeVal_t getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) override;
+		virtual _EdgeVal getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) override;
+
+		/**
+		 * \brief iterate throw edges between 2 vertecies.
+		 * \param v1 a source vertex.
+		 * \param v2 a destination vertex.
+		 * \return an iterator to the beginning
+		 */
+		virtual typename IConnector<_EdgeVal>::edge_iterator beginIterateEdges(vertex_id_t v1, vertex_id_t v2) override;
+
+		/**
+		* \brief iterate throw edges between 2 vertecies.
+		* \param v1 a source vertex.
+		* \param v2 a destination vertex.
+		* \return an iterator to the end.
+		*/
+		virtual typename IConnector<_EdgeVal>::edge_iterator endIterateEdges(vertex_id_t v1, vertex_id_t v2) override;
+
+		virtual typename IConnector<_EdgeVal>::out_edges_iterator beginIterateEdges(vertex_id_t v1) override;
+
+		virtual typename IConnector<_EdgeVal>::out_edges_iterator endIterateEdges(vertex_id_t v1) override;
 
 		/**
 		 * \brief clear collection.
 		 */
 		virtual void clear() override;
 
-		virtual ~BaseConnector() { };
+		virtual ~BaseConnector() { }
 	};
 }
 

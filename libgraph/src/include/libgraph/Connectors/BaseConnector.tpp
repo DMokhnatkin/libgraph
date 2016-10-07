@@ -2,58 +2,72 @@
 
 using namespace libgraph;
 
-template <typename edgeVal_t>
-BaseConnector<edgeVal_t>::BaseConnector() {
-	edges = new FreeIdCollection<edgeVal_t>();
-	connections = new std::unordered_map<std::pair<vertex_id_t, vertex_id_t>, std::unordered_set<edge_id_t>, pair_hash>();
+template <typename _EdgeVal>
+BaseConnector<_EdgeVal>::BaseConnector() {
+	edges = new FreeIdCollection<_EdgeVal>();
+	connections = new std::unordered_map<vertex_id_t, std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>>();
 }
 
-template<typename edgeVal_t>
-edge_id_t BaseConnector<edgeVal_t>::connect(vertex_id_t v1, vertex_id_t v2, edgeVal_t edgeVal) {
+template<typename _EdgeVal>
+edge_id_t BaseConnector<_EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) {
 	vertex_id_t newEdgeId = edges->createVertex(edgeVal);
-	std::pair<vertex_id_t, vertex_id_t> p(v1, v2);
-	(*connections)[p].insert(newEdgeId);
+	(*connections)[v1][v2].insert(newEdgeId);
 	return newEdgeId;
 }
 
-template<typename edgeVal_t>
-void BaseConnector<edgeVal_t>::disconnect(vertex_id_t v1, vertex_id_t v2) {
-	std::pair<vertex_id_t, vertex_id_t> p(v1, v2);
+template<typename _EdgeVal>
+void BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2) {
 	// Remove edges ids and edges data from FreeIdCollection
-	std::for_each((*connections)[p].begin(), (*connections)[p].end(), [&edges = this->edges](edge_id_t x) { edges->deleteVertex(x); });
-	(*connections)[p].clear();
+	std::for_each((*connections)[v1][v2].begin(), (*connections)[v1][v2].end(), [&edges = this->edges](edge_id_t x) { edges->deleteVertex(x); });
+	(*connections)[v1][v2].clear();
 }
 
-template <typename edgeVal_t>
-bool BaseConnector<edgeVal_t>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
-	std::pair<vertex_id_t, vertex_id_t> p(v1, v2);
+template <typename _EdgeVal>
+bool BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	if (!areConnected(v1, v2, edgeId))
 		return false;
 	edges->deleteVertex(edgeId);
-	(*connections)[p].erase(edgeId);
+	(*connections)[v1][v2].erase(edgeId);
 	return true;
 }
 
-template<typename edgeVal_t>
-bool BaseConnector<edgeVal_t>::areConnected(vertex_id_t v1, vertex_id_t v2) {
-	std::pair<vertex_id_t, vertex_id_t> p(v1, v2);
-	return  !(*connections)[p].empty();
+template<typename _EdgeVal>
+bool BaseConnector<_EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v2) {
+	return  !(*connections)[v1][v2].empty();
 }
 
-template <typename edgeVal_t>
-bool BaseConnector<edgeVal_t>::areConnected(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
-	std::pair<vertex_id_t, vertex_id_t> p(v1, v2);
-	return  (*connections)[p].count(edgeId) != 0;
+template <typename _EdgeVal>
+bool BaseConnector<_EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
+	return  (*connections)[v1][v2].count(edgeId) != 0;
 }
 
-template <typename edgeVal_t>
-edgeVal_t BaseConnector<edgeVal_t>::getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId)
-{
+template <typename _EdgeVal>
+_EdgeVal BaseConnector<_EdgeVal>::getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	return edges->getData(edgeId);
 }
 
-template<typename edgeVal_t>
-void BaseConnector<edgeVal_t>::clear() {
+template <typename _EdgeVal>
+typename IConnector<_EdgeVal>::edge_iterator BaseConnector<_EdgeVal>::beginIterateEdges(vertex_id_t v1, vertex_id_t v2) {
+	return (*connections)[v1][v2].begin();
+}
+
+template <typename _EdgeVal>
+typename IConnector<_EdgeVal>::edge_iterator BaseConnector<_EdgeVal>::endIterateEdges(vertex_id_t v1, vertex_id_t v2) {
+	return (*connections)[v1][v2].end();
+}
+
+template <typename _EdgeVal>
+typename IConnector<_EdgeVal>::out_edges_iterator BaseConnector<_EdgeVal>::beginIterateEdges(vertex_id_t v1) {
+	return EmptyValue(); // TODO: Not implemented
+}
+
+template <typename _EdgeVal>
+typename IConnector<_EdgeVal>::out_edges_iterator BaseConnector<_EdgeVal>::endIterateEdges(vertex_id_t v1) {
+	return EmptyValue(); // TODO: Not implemented
+}
+
+template<typename _EdgeVal>
+void BaseConnector<_EdgeVal>::clear() {
 	edges->clear();
 	connections->clear();
 }

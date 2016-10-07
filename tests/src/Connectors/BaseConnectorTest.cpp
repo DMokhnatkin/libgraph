@@ -5,6 +5,7 @@
 
 #include <libgraph/Connectors/BaseConnector.h>
 #include <libgraph/Globals.h>
+#include <winsock.h>
 
 using namespace libgraph;
 
@@ -107,4 +108,19 @@ TEST_F(BaseConnectorTest, testConnectDisconnect) {
 	ASSERT_TRUE(coll->areConnected(1, 3));
 	ASSERT_FALSE(coll->areConnected(3, 1));
 	ASSERT_TRUE(coll->areConnected(4, 5));
+}
+
+TEST_F(BaseConnectorTest, testIterateEdges) {
+	coll->connect(2, 7, EmptyValue());
+	int edge1_id = coll->connect(2, 3, EmptyValue()); // 1-st edge which will be iterated
+	coll->connect(2, 5, EmptyValue());
+	int edge2_id = coll->connect(2, 3, EmptyValue()); // 2-d edge which will be iterated
+	int edge3_id = coll->connect(2, 3, EmptyValue()); // 3-th edge which will be iterated
+	coll->connect(1, 7, EmptyValue());
+	int ct = 0;
+	for (auto i = coll->beginIterateEdges(2, 3); i != coll->endIterateEdges(2, 3); i++) {
+		ASSERT_TRUE(*i == edge1_id || *i == edge2_id || *i == edge3_id);
+		ct++;
+	}
+	ASSERT_EQ(ct, 3);
 }

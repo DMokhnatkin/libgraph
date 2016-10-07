@@ -6,10 +6,10 @@
 #include <libgraph/Connectors/IConnector.h>
 
 namespace libgraph{
-	template<typename edgeVal_t>
+	template<typename _EdgeVal>
 	class libgraph_API IGraph{
 	public:
-		virtual IConnector<edgeVal_t> & getConnector() = 0;
+		virtual IConnector<_EdgeVal> & getConnector() = 0;
 		virtual ~IGraph(){ };
 	};
 }
