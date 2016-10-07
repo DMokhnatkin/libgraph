@@ -23,7 +23,7 @@ namespace libgraph {
 	template <typename edgeVal_t>
 	class BaseConnector : public IConnector<edgeVal_t> {
 	private:
-		FreeIdCollection<typename  edgeVal_t> *edges;
+		FreeIdCollection<edgeVal_t> *edges;
 		std::unordered_map<std::pair<vertex_id_t, vertex_id_t>, std::unordered_set<edge_id_t>, pair_hash> *connections;
 	public:
 		BaseConnector();
