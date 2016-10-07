@@ -5,7 +5,6 @@
 
 #include <libgraph/Connectors/BaseConnector.h>
 #include <libgraph/Globals.h>
-#include <winsock.h>
 
 using namespace libgraph;
 
