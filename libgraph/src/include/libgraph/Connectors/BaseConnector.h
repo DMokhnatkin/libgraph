@@ -9,14 +9,23 @@
 #include <libgraph/Connectors/IConnector.h>
 #include <libgraph/DataStorages/FreeIdCollection.h>
 #include <libgraph/Globals.h>
+#include <libgraph/Globals.h>
 
 namespace libgraph {
+	template<typename _EdgeVal>
+	class BaseConnectorOutEdgesIter;
+	template<typename _EdgeVal>
+	class BaseConnectorEdgesIter;
+
 	template <typename _EdgeVal>
 	class BaseConnector : public IConnector<_EdgeVal> {
 	private:
 		FreeIdCollection<_EdgeVal> *edges;
 		std::unordered_map<vertex_id_t, std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>> *connections;
 	public:
+		friend class BaseConnectorOutEdgesIter<_EdgeVal>;
+		friend class BaseConnectorEdgesIter<_EdgeVal>;
+
 		BaseConnector();
 
 		/**
@@ -71,25 +80,14 @@ namespace libgraph {
 		 */
 		virtual _EdgeVal getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) override;
 
-		/**
-		 * \brief iterate throw edges between 2 vertecies.
-		 * \param v1 a source vertex.
-		 * \param v2 a destination vertex.
-		 * \return an iterator to the beginning
-		 */
-		virtual typename IConnector<_EdgeVal>::edge_iterator beginIterateEdges(vertex_id_t v1, vertex_id_t v2) override;
+		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1, vertex_id_t v2) override;
 
 		/**
-		* \brief iterate throw edges between 2 vertecies.
+		* \brief iterate throw edges which out from v1.
 		* \param v1 a source vertex.
-		* \param v2 a destination vertex.
-		* \return an iterator to the end.
+		* \return an iterator.
 		*/
-		virtual typename IConnector<_EdgeVal>::edge_iterator endIterateEdges(vertex_id_t v1, vertex_id_t v2) override;
-
-		virtual typename IConnector<_EdgeVal>::out_edges_iterator beginIterateEdges(vertex_id_t v1) override;
-
-		virtual typename IConnector<_EdgeVal>::out_edges_iterator endIterateEdges(vertex_id_t v1) override;
+		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1) override;
 
 		/**
 		 * \brief clear collection.
@@ -97,6 +95,52 @@ namespace libgraph {
 		virtual void clear() override;
 
 		virtual ~BaseConnector() { }
+	};
+
+	/**
+	 * \brief iterator over edges which out from specifed vertex.
+	 * \tparam _EdgeVal type of data stored in edges.
+	 */
+	template<typename _EdgeVal>
+	class BaseConnectorOutEdgesIter : public IIterator<EdgeTuple> {
+	private:
+		BaseConnector<_EdgeVal> & connector;
+		vertex_id_t v1;
+		std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>::iterator v2_iter;
+		std::unordered_set<edge_id_t>::iterator edge_iter;
+	public:
+		BaseConnectorOutEdgesIter(
+			BaseConnector<_EdgeVal> & connector,
+			vertex_id_t v1) :
+			connector(connector), v1(v1) {  }
+		void first() override;
+		void next() override;
+		bool isDone() override;
+		EdgeTuple currentItem() override;
+		~BaseConnectorOutEdgesIter() { }
+	};
+
+	/**
+	* \brief iterator over edges which out from and ended specifed vertecies.
+	* \tparam _EdgeVal type of data stored in edges.
+	*/
+	template<typename _EdgeVal>
+	class BaseConnectorEdgesIter : public IIterator<EdgeTuple> {
+	private:
+		BaseConnector<_EdgeVal> & connector;
+		vertex_id_t v1, v2;
+		std::unordered_set<edge_id_t>::iterator edge_iter;
+	public:
+		BaseConnectorEdgesIter(
+			BaseConnector<_EdgeVal> & connector,
+			vertex_id_t v1,
+			vertex_id_t v2) :
+			connector(connector), v1(v1), v2(v2) {  }
+		void first() override;
+		void next() override;
+		bool isDone() override;
+		EdgeTuple currentItem() override;
+		~BaseConnectorEdgesIter() { }
 	};
 }
 

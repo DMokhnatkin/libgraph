@@ -47,4 +47,9 @@
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
