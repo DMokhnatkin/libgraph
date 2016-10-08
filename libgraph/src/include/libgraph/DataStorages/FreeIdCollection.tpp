@@ -14,7 +14,7 @@ FreeIdCollection<T>::FreeIdCollection() {
 * \return true if exists, false if not.
 */
 template <typename T>
-bool FreeIdCollection<T>::contains(int id) {
+bool FreeIdCollection<T>::contains(unsigned int id) {
 	return id < data.size() && freeId.count(id) == 0;
 }
 
@@ -23,7 +23,7 @@ bool FreeIdCollection<T>::contains(int id) {
 * \return Number of elements in collection.
 */
 template <typename T>
-int FreeIdCollection<T>::getCount() {
+unsigned int FreeIdCollection<T>::getCount() {
 	return ct;
 }
 
@@ -33,7 +33,7 @@ int FreeIdCollection<T>::getCount() {
 * \return ID of given element.
 */
 template <typename T>
-int FreeIdCollection<T>::addData(T data) {
+unsigned int FreeIdCollection<T>::addData(T data) {
 	vertex_id_t id;
 	if (freeId.empty()){
 		id = ct;
@@ -54,7 +54,7 @@ int FreeIdCollection<T>::addData(T data) {
 * \return Data if key exists in collection.
 */
 template <typename T>
-T FreeIdCollection<T>::getData(int id) {
+T FreeIdCollection<T>::getData(unsigned int id) {
 	if (!contains(id))
 		throw std::invalid_argument("No key in collection");
 	return data[id];
@@ -66,7 +66,7 @@ T FreeIdCollection<T>::getData(int id) {
 * \return False if element is not in collection, true if deletion is successful.
 */
 template <typename T>
-bool FreeIdCollection<T>::removeData(int v) {
+bool FreeIdCollection<T>::removeData(unsigned int v) {
 	// if v is not in collection, return false
 	if (!contains(v))
 		return false;
