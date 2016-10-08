@@ -10,6 +10,28 @@
 #include <unordered_set>
 
 namespace libgraph {
+
+	/**
+	 * \brief an edge tuple. Used to store (v1, v2, edgeId).
+	 */
+	class EdgeTuple {
+	private:
+		vertex_id_t v1, v2;
+		edge_id_t edgeId;
+	public:
+		EdgeTuple(
+			vertex_id_t v1,
+			vertex_id_t v2,
+			edge_id_t edgeId) :
+			v1(v1), v2(v2), edgeId(edgeId) { }
+
+		vertex_id_t getV1() const { return v1; };
+
+		vertex_id_t getV2() const { return v2; };
+
+		vertex_id_t getEdgeId() const { return edgeId; };
+	};
+
 	template <typename _EdgeVal>
 	class IConnector {
 	private:
@@ -23,16 +45,6 @@ namespace libgraph {
 		 * \brief const iterator for edges.
 		 */
 		typedef std::unordered_set<edge_id_t>::const_iterator const_edge_iterator;
-
-		/**
-		* \brief iterator for edges from some vertex.
-		*/
-		typedef EmptyValue out_edges_iterator; // TODO: not implemented
-
-		/**
-		* \brief const iterator for edges from some vertex.
-		*/
-		typedef EmptyValue const_out_edges_iterator; // TODO: not implemented
 
 		/**
 		* \brief Connect two vertices.
@@ -104,16 +116,9 @@ namespace libgraph {
 		/**
 		* \brief iterate throw edges started in v1.
 		* \param v1 a source vertex.
-		* \return an iterator to the beginning.
+		* \return an iterator.
 		*/
-		virtual out_edges_iterator beginIterateEdges(vertex_id_t v1) = 0;
-
-		/**
-		* \brief iterate throw edges started in v1.
-		* \param v1 a source vertex.
-		* \return an iterator to the end.
-		*/
-		virtual const_out_edges_iterator endIterateEdges(vertex_id_t v1) = 0;
+		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1) = 0;
 
 		virtual void clear() = 0;
 		virtual ~IConnector() { };
