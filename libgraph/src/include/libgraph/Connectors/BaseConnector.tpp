@@ -48,13 +48,10 @@ _EdgeVal BaseConnector<_EdgeVal>::getEdgeVal(vertex_id_t v1, vertex_id_t v2, edg
 }
 
 template <typename _EdgeVal>
-typename IConnector<_EdgeVal>::edge_iterator BaseConnector<_EdgeVal>::beginIterateEdges(vertex_id_t v1, vertex_id_t v2) {
-	return (*connections)[v1][v2].begin();
-}
-
-template <typename _EdgeVal>
-typename IConnector<_EdgeVal>::edge_iterator BaseConnector<_EdgeVal>::endIterateEdges(vertex_id_t v1, vertex_id_t v2) {
-	return (*connections)[v1][v2].end();
+IIterator<EdgeTuple>* BaseConnector<_EdgeVal>::createEdgesIter(vertex_id_t v1, vertex_id_t v2) {
+	auto iter = new BaseConnectorEdgesIter<_EdgeVal>(*this, v1, v2);
+	iter->first();
+	return iter;
 }
 
 template <typename _EdgeVal>
@@ -95,4 +92,27 @@ bool BaseConnectorOutEdgesIter<_EdgeVal>::isDone() {
 template<typename _EdgeVal>
 EdgeTuple BaseConnectorOutEdgesIter<_EdgeVal>::currentItem() {
 	return EdgeTuple(v1, (std::get<0>(*v2_iter)), *edge_iter);
+}
+
+template <typename _EdgeVal>
+void BaseConnectorEdgesIter<_EdgeVal>::first() {
+	if (connector.areConnected(v1, v2))
+		edge_iter = (*connector.connections)[v1][v2].begin();
+}
+
+template <typename _EdgeVal>
+void BaseConnectorEdgesIter<_EdgeVal>::next() {
+	edge_iter++;
+}
+
+template <typename _EdgeVal>
+bool BaseConnectorEdgesIter<_EdgeVal>::isDone() {
+	if (!connector.areConnected(v1, v2))
+		return true;
+	return edge_iter == (*connector.connections)[v1][v2].end();
+}
+
+template <typename _EdgeVal>
+EdgeTuple BaseConnectorEdgesIter<_EdgeVal>::currentItem() {
+	return EdgeTuple(v1, v2, *edge_iter);
 }

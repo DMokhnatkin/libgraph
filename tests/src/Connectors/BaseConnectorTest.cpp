@@ -118,8 +118,12 @@ TEST_F(BaseConnectorTest, testIterateEdges) {
 	int edge3_id = coll->connect(2, 3, EmptyValue()); // 3-th edge which will be iterated
 	coll->connect(1, 7, EmptyValue());
 	int ct = 0;
-	for (auto i = coll->beginIterateEdges(2, 3); i != coll->endIterateEdges(2, 3); i++) {
-		ASSERT_TRUE(*i == edge1_id || *i == edge2_id || *i == edge3_id);
+	for (auto i = coll->createEdgesIter(2, 3); !i->isDone(); i->next()) {
+		auto cur = i->currentItem();
+		ASSERT_TRUE(
+			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge1_id ||
+			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge2_id ||
+			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge3_id);
 		ct++;
 	}
 	ASSERT_EQ(ct, 3);

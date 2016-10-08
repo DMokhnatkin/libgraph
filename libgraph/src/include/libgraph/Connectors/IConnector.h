@@ -37,16 +37,6 @@ namespace libgraph {
 	private:
 	public:
 		/**
-		 * \brief iterator for edges.
-		 */
-		typedef std::unordered_set<edge_id_t>::iterator edge_iterator;
-
-		/**
-		 * \brief const iterator for edges.
-		 */
-		typedef std::unordered_set<edge_id_t>::const_iterator const_edge_iterator;
-
-		/**
 		* \brief Connect two vertices.
 		* \param v1 a source vertex.
 		* \param v2 a destination vertex.
@@ -98,27 +88,19 @@ namespace libgraph {
 		virtual _EdgeVal getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) = 0;
 
 		/**
-		 * \brief iterate throw edges between 2 vertecies.
-		 * \param v1 a source vertex.
-		 * \param v2 a destination vertex.
-		 * \return an iterator to the beginning
-		 */
-		virtual edge_iterator beginIterateEdges(vertex_id_t v1, vertex_id_t v2) = 0;
-
-		/**
-		* \brief iterate throw edges between 2 vertecies.
-		* \param v1 a source vertex.
-		* \param v2 a destination vertex.
-		* \return an iterator to the end.
-		*/
-		virtual edge_iterator endIterateEdges(vertex_id_t v1, vertex_id_t v2) = 0;
-
-		/**
 		* \brief iterate throw edges started in v1.
 		* \param v1 a source vertex.
 		* \return an iterator.
 		*/
 		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1) = 0;
+
+		/**
+		* \brief iterate throw edges started in v1 and ended in v2.
+		* \param v1 a source vertex.
+		* \param v2 a destination vertex.
+		* \return an iterator.
+		*/
+		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1, vertex_id_t v2) = 0;
 
 		virtual void clear() = 0;
 		virtual ~IConnector() { };
