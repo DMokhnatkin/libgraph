@@ -82,6 +82,9 @@
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\lib.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

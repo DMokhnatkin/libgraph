@@ -1,4 +1,5 @@
 #include <libgraph/Connectors/BaseConnector.h>
+#include <algorithm>
 
 using namespace libgraph;
 

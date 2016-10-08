@@ -14,7 +14,7 @@ namespace libgraph {
 	template <typename _EdgeVal>
 	class BaseConnector : public IConnector<_EdgeVal> {
 	private:
-		FreeIdCollection<typename  _EdgeVal> *edges;
+		FreeIdCollection<_EdgeVal> *edges;
 		std::unordered_map<vertex_id_t, std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>> *connections;
 	public:
 		BaseConnector();
