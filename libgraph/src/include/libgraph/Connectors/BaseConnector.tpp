@@ -11,7 +11,7 @@ BaseConnector<_EdgeVal>::BaseConnector() {
 
 template<typename _EdgeVal>
 edge_id_t BaseConnector<_EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) {
-	vertex_id_t newEdgeId = edges->createVertex(edgeVal);
+	vertex_id_t newEdgeId = edges->addData(edgeVal);
 	(*connections)[v1][v2].insert(newEdgeId);
 	return newEdgeId;
 }
@@ -19,7 +19,7 @@ edge_id_t BaseConnector<_EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _Edge
 template<typename _EdgeVal>
 void BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2) {
 	// Remove edges ids and edges data from FreeIdCollection
-	std::for_each((*connections)[v1][v2].begin(), (*connections)[v1][v2].end(), [&edges = this->edges](edge_id_t x) { edges->deleteVertex(x); });
+	std::for_each((*connections)[v1][v2].begin(), (*connections)[v1][v2].end(), [&edges = this->edges](edge_id_t x) { edges->removeData(x); });
 	(*connections)[v1][v2].clear();
 }
 
@@ -27,7 +27,7 @@ template <typename _EdgeVal>
 bool BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	if (!areConnected(v1, v2, edgeId))
 		return false;
-	edges->deleteVertex(edgeId);
+	edges->removeData(edgeId);
 	(*connections)[v1][v2].erase(edgeId);
 	return true;
 }

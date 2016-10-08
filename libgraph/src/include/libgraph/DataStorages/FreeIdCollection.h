@@ -12,15 +12,15 @@ namespace libgraph {
 	class FreeIdCollection : public IDataStorage<T> {
 	private:
 		std::vector<T> data;
-		std::unordered_set<vertex_id_t> freeId;
-		vertex_id_t vertex_ct = 0;
+		std::unordered_set<unsigned int> freeId;
+		int ct = 0;
 	public:
 		FreeIdCollection();
-		virtual vertex_id_t getVertexCount() override;
-		virtual vertex_id_t createVertex(T) override;
-		virtual bool contains(vertex_id_t);
-		virtual T getData(vertex_id_t);
-		virtual bool deleteVertex(vertex_id_t) override;
+		virtual unsigned int getCount() override;
+		virtual unsigned int addData(T) override;
+		virtual bool contains(unsigned int);
+		virtual T getData(unsigned int);
+		virtual bool removeData(unsigned int) override;
 		virtual void clear();
 		virtual ~FreeIdCollection() { };
 	};
