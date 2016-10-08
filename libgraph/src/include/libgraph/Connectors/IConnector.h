@@ -29,7 +29,7 @@ namespace libgraph {
 
 		vertex_id_t getV2() const { return v2; };
 
-		vertex_id_t getEdgeId() const { return edgeId; };
+		edge_id_t getEdgeId() const { return edgeId; };
 	};
 
 	template <typename _EdgeVal>
