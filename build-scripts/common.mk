@@ -3,8 +3,8 @@
 
 # Variables--------------------------------------------------------------------
 PROJECT?=
-CC?=g++
-CFLAGS?=
+CC=clang++
+CFLAGS?=-g -std=c++14 -Wall
 LDFLAGS?=
 
 OBJEXT?=o

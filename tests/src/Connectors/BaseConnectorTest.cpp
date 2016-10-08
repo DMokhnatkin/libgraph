@@ -111,18 +111,19 @@ TEST_F(BaseConnectorTest, testConnectDisconnect) {
 
 TEST_F(BaseConnectorTest, testIterateEdges) {
 	coll->connect(2, 7, EmptyValue());
-	int edge1_id = coll->connect(2, 3, EmptyValue()); // 1-st edge which will be iterated
+	edge_id_t edge1_id = coll->connect(2, 3, EmptyValue()); // 1-st edge which will be iterated
 	coll->connect(2, 5, EmptyValue());
-	int edge2_id = coll->connect(2, 3, EmptyValue()); // 2-d edge which will be iterated
-	int edge3_id = coll->connect(2, 3, EmptyValue()); // 3-th edge which will be iterated
+	edge_id_t edge2_id = coll->connect(2, 3, EmptyValue()); // 2-d edge which will be iterated
+	edge_id_t edge3_id = coll->connect(2, 3, EmptyValue()); // 3-th edge which will be iterated
 	coll->connect(1, 7, EmptyValue());
 	int ct = 0;
 	for (auto i = coll->createEdgesIter(2, 3); !i->isDone(); i->next()) {
 		auto cur = i->currentItem();
 		ASSERT_TRUE(
-			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge1_id ||
-			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge2_id ||
-			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge3_id);
+			(cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge1_id) ||
+			(cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge2_id) ||
+			(cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge3_id)
+		);
 		ct++;
 	}
 	ASSERT_EQ(ct, 3);
@@ -130,20 +131,21 @@ TEST_F(BaseConnectorTest, testIterateEdges) {
 
 TEST_F(BaseConnectorTest, testOutEdgesIterate) {
 	coll->connect(3, 7, EmptyValue());
-	int edge1_id = coll->connect(2, 3, EmptyValue()); // 1-st edge which will be iterated
+	edge_id_t edge1_id = coll->connect(2, 3, EmptyValue()); // 1-st edge which will be iterated
 	coll->connect(3, 2, EmptyValue());
-	int edge2_id = coll->connect(2, 3, EmptyValue()); // 2-d edge which will be iterated
-	int edge3_id = coll->connect(2, 5, EmptyValue()); // 3-th edge which will be iterated
+	edge_id_t edge2_id = coll->connect(2, 3, EmptyValue()); // 2-d edge which will be iterated
+	edge_id_t edge3_id = coll->connect(2, 5, EmptyValue()); // 3-th edge which will be iterated
 	coll->connect(1, 7, EmptyValue());
-	int edge4_id = coll->connect(2, 1, EmptyValue()); // 4-th edge which will be iterated
+	edge_id_t edge4_id = coll->connect(2, 1, EmptyValue()); // 4-th edge which will be iterated
 	int ct = 0;
 	for (auto i = coll->createEdgesIter(2); !i->isDone(); i->next()) {
 		auto cur = i->currentItem();
 		ASSERT_TRUE(
-			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge1_id ||
-			cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge2_id ||
-			cur.getV1() == 2 && cur.getV2() == 5 && cur.getEdgeId() == edge3_id ||
-			cur.getV1() == 2 && cur.getV2() == 1 && cur.getEdgeId() == edge4_id);
+			(cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge1_id) ||
+			(cur.getV1() == 2 && cur.getV2() == 3 && cur.getEdgeId() == edge2_id) ||
+			(cur.getV1() == 2 && cur.getV2() == 5 && cur.getEdgeId() == edge3_id) ||
+			(cur.getV1() == 2 && cur.getV2() == 1 && cur.getEdgeId() == edge4_id)
+		);
 		ct++;
 	}
 	ASSERT_EQ(ct, 4);

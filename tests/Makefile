@@ -4,8 +4,7 @@ GDB=gdb
 GDBFLAGS=--args
 PROJECT=tests
 GRAPH_PATH=../libgraph
-CC=g++
-CFLAGS=-g -std=c++14 -Wall -I$(GRAPH_PATH)/src/include
+CFLAGS+=-I$(GRAPH_PATH)/src/include
 LDFLAGS=-lgtest -L$(GRAPH_PATH)/$(BUILDDIR) -lgraph
 
 include ../build-scripts/targets.mk
