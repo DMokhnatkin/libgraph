@@ -59,7 +59,7 @@ namespace libgraph {
 		* \param edgeId an edge to remove.
 		* \return true if succesed.
 		*/
-		virtual bool disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) = 0;
+		virtual void disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) = 0;
 
 		/**
 		* \brief Are two vertecies connected.

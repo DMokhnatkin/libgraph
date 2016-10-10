@@ -33,18 +33,28 @@
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\include\libgraph\Connectors\IConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\libgraph\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\libgraph\IVertexStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\Graphs\BaseGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\private\contracts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
+    <None Include="src\include\libgraph\Graphs\BaseGraph.tpp" />
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
   </ItemGroup>
   <ItemGroup>

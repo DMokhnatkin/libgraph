@@ -70,12 +70,13 @@ TEST_F(BaseConnectorTest, testDisconnectById) {
 	coll->connect(3, 1, EmptyValue()); // EdgeId = 1
 	coll->connect(4, 5, EmptyValue()); // EdgeId = 2
 
-	ASSERT_FALSE(coll->disconnect(1, 3, 1));
-	ASSERT_TRUE(coll->disconnect(1, 3, 0));
+	ASSERT_TRUE(coll->areConnected(1, 3, 0));
+	coll->disconnect(1, 3, 0);
+	ASSERT_FALSE(coll->areConnected(1, 3, 0));
 
-	ASSERT_FALSE(coll->disconnect(2, 6, 1));
-	ASSERT_FALSE(coll->disconnect(4, 5, 1));
-	ASSERT_TRUE(coll->disconnect(4, 5, 2));
+	ASSERT_TRUE(coll->areConnected(4, 5, 2));
+	coll->disconnect(4, 5, 2);
+	ASSERT_FALSE(coll->areConnected(4, 5, 2));
 }
 
 TEST_F(BaseConnectorTest, testConnectDisconnect) {
