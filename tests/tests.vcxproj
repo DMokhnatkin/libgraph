@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Connectors\BaseConnectorTest.cpp" />
+    <ClCompile Include="src\Connectors\IConnectorTest.cpp" />
     <ClCompile Include="src\DataStorages\FreeIdCollectionTest.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
