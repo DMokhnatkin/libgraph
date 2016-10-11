@@ -28,7 +28,6 @@ namespace libgraph {
 		virtual vertex_id_t createVertex(_VertexVal) override;
 		virtual bool containsVertex(vertex_id_t id) override;
 		virtual void removeVertex(vertex_id_t id) override;
-		virtual void clearVertices() override;
 		virtual ~BaseGraph() {
 			delete connector;
 			delete vertices;
