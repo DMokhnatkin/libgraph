@@ -11,7 +11,6 @@ using namespace libgraph;
 
 class DFSTest : public ::testing::Test {
 protected:
-	DFS<int, EmptyValue, EmptyValue> dfs;
 	BaseGraph<EmptyValue, EmptyValue> *coll;
 
 	void SetUp() {
@@ -28,7 +27,7 @@ TEST_F(DFSTest, testSearch) {
 	coll->connect(1, 2, EmptyValue());
 
 	int ct = 0;
-	auto specDFS = dfs.get(coll);
+	auto specDFS = DFS<int, EmptyValue, EmptyValue>::get(coll);
 	specDFS->doSearch(*coll, 0, ct,
 					[](vertex_id_t v1, vertex_id_t v2, edge_id_t e, int &ct){
 		ct += v2;

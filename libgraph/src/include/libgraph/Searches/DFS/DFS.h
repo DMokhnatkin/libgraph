@@ -15,7 +15,7 @@ namespace libgraph {
 		* \brief Get specific DFS for given graph
 		* \param graph Graph
 		*/
-		IDFS<_State, _VertexVal, _EdgeVal> *get(
+		static IDFS<_State, _VertexVal, _EdgeVal> *get(
 								IGraph<_VertexVal, _EdgeVal> *graph);
 	};
 }
