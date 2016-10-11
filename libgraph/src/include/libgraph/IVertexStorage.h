@@ -11,7 +11,6 @@ namespace libgraph {
 		virtual vertex_id_t createVertex(_VertexValue) = 0;
 		virtual bool containsVertex(vertex_id_t id) = 0;
 		virtual void removeVertex(vertex_id_t id) = 0;
-		virtual void clearVertices() = 0;
 		virtual ~IVertexStorage() { };
 	};
 }
