@@ -41,3 +41,9 @@ public:
 
 	virtual ~IIterator() { };
 };
+
+class Unimplemented : public std::exception {
+	virtual const char* what() const throw() override {
+		return "Not implemented";
+	}
+};

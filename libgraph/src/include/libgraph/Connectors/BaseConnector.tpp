@@ -1,5 +1,7 @@
 #include <libgraph/Connectors/BaseConnector.h>
 #include <algorithm>
+#include <libgraph/private/contracts.h>
+#include <string>
 
 using namespace libgraph;
 
@@ -18,18 +20,23 @@ edge_id_t BaseConnector<_EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _Edge
 
 template<typename _EdgeVal>
 void BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2) {
+	LG_REQ_COND(
+		areConnected(v1, v2),
+		std::invalid_argument("Vertecies " + std::to_string(v1) + " " + std::to_string(v2) + " not connected"));
+
 	// Remove edges ids and edges data from FreeIdCollection
 	std::for_each((*connections)[v1][v2].begin(), (*connections)[v1][v2].end(), [&edges = this->edges](edge_id_t x) { edges->removeData(x); });
 	(*connections)[v1][v2].clear();
 }
 
 template <typename _EdgeVal>
-bool BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
-	if (!areConnected(v1, v2, edgeId))
-		return false;
+void BaseConnector<_EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
+	LG_REQ_COND(
+		areConnected(v1, v2, edgeId),
+		std::invalid_argument("Vertecies " + std::to_string(v1) + " " + std::to_string(v2) + " not connected"));
+
 	edges->removeData(edgeId);
 	(*connections)[v1][v2].erase(edgeId);
-	return true;
 }
 
 template<typename _EdgeVal>

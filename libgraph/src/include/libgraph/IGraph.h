@@ -4,12 +4,12 @@
 #include <libgraph/private/constants.h>
 
 #include <libgraph/Connectors/IConnector.h>
+#include "IVertexStorage.h"
 
 namespace libgraph{
-	template<typename _EdgeVal>
-	class libgraph_API IGraph{
+	template<typename _VertexVal, typename _EdgeVal>
+	class libgraph_API IGraph : public IVertexStorage<_VertexVal>, public IConnector<_EdgeVal> {
 	public:
-		virtual IConnector<_EdgeVal> & getConnector() = 0;
-		virtual ~IGraph(){ };
+		virtual ~IGraph() { };
 	};
 }
