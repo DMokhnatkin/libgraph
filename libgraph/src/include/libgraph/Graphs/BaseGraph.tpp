@@ -120,7 +120,7 @@ bool BaseGraph<_VertexVal, _EdgeVal>::containsVertex(vertex_id_t id) {
 		!vertices->contains(id),
 		std::invalid_argument("Vertex " + std::to_string(id) + " is not in graph"));
 
-	return vertices->getData(id);
+	return vertices->contains(id);
 }
 
 template <typename _VertexVal, typename _EdgeVal>
