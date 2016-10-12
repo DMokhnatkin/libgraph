@@ -3,8 +3,9 @@
 
 # Variables--------------------------------------------------------------------
 PROJECT?=
+INCLUDE_DIR?=
 CC=clang++
-CFLAGS?=-g -std=c++14 -Wall
+CFLAGS?=-g -std=c++14 -Wall -I$(INCLUDE_DIR)
 LDFLAGS?=
 
 OBJEXT?=o

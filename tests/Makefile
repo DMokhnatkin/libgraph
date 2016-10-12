@@ -1,10 +1,10 @@
+INCLUDE_DIR=$(GRAPH_PATH)/src/include
 include ../build-scripts/common.mk
 
 GDB=gdb
 GDBFLAGS=--args
 PROJECT=tests
 GRAPH_PATH=../libgraph
-CFLAGS+=-I$(GRAPH_PATH)/src/include
 LDFLAGS=-lgtest -L$(GRAPH_PATH)/$(BUILDDIR) -lgraph
 
 include ../build-scripts/targets.mk
