@@ -8,10 +8,10 @@ using namespace libgraph;
 template <typename _VertexVal, typename _EdgeVal>
 edge_id_t BaseGraph<_VertexVal, _EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) {
 	LG_REQ_COND(
-		!vertices->contains(v1), 
+		vertices->contains(v1), 
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2), 
+		vertices->contains(v2), 
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	return connector->connect(v1, v2, edgeVal);
@@ -20,10 +20,10 @@ edge_id_t BaseGraph<_VertexVal, _EdgeVal>::connect(vertex_id_t v1, vertex_id_t v
 template <typename _VertexVal, typename _EdgeVal>
 void BaseGraph<_VertexVal, _EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	connector->disconnect(v1, v2);
@@ -32,10 +32,10 @@ void BaseGraph<_VertexVal, _EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2)
 template <typename _VertexVal, typename _EdgeVal>
 void BaseGraph<_VertexVal, _EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 	
 	connector->disconnect(v1, v2, edgeId);
@@ -44,10 +44,10 @@ void BaseGraph<_VertexVal, _EdgeVal>::disconnect(vertex_id_t v1, vertex_id_t v2,
 template <typename _VertexVal, typename _EdgeVal>
 bool BaseGraph<_VertexVal, _EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v2) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	return connector->areConnected(v1, v2);
@@ -56,10 +56,10 @@ bool BaseGraph<_VertexVal, _EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v
 template <typename _VertexVal, typename _EdgeVal>
 bool BaseGraph<_VertexVal, _EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	return connector->areConnected(v1, v2, edgeId);
@@ -68,10 +68,10 @@ bool BaseGraph<_VertexVal, _EdgeVal>::areConnected(vertex_id_t v1, vertex_id_t v
 template <typename _VertexVal, typename _EdgeVal>
 _EdgeVal BaseGraph<_VertexVal, _EdgeVal>::getEdgeVal(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	return connector->getEdgeVal(v1, v2, edgeId);
@@ -80,7 +80,7 @@ _EdgeVal BaseGraph<_VertexVal, _EdgeVal>::getEdgeVal(vertex_id_t v1, vertex_id_t
 template <typename _VertexVal, typename _EdgeVal>
 IIterator<EdgeTuple>* BaseGraph<_VertexVal, _EdgeVal>::createEdgesIter(vertex_id_t v1) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	
 	return connector->createEdgesIter(v1);
@@ -89,10 +89,10 @@ IIterator<EdgeTuple>* BaseGraph<_VertexVal, _EdgeVal>::createEdgesIter(vertex_id
 template <typename _VertexVal, typename _EdgeVal>
 IIterator<EdgeTuple>* BaseGraph<_VertexVal, _EdgeVal>::createEdgesIter(vertex_id_t v1, vertex_id_t v2) {
 	LG_REQ_COND(
-		!vertices->contains(v1),
+		vertices->contains(v1),
 		std::invalid_argument("Vertex " + std::to_string(v1) + " is not in graph"));
 	LG_REQ_COND(
-		!vertices->contains(v2),
+		vertices->contains(v2),
 		std::invalid_argument("Vertex " + std::to_string(v2) + " is not in graph"));
 
 	return connector->createEdgesIter(v1, v2);
@@ -115,18 +115,23 @@ vertex_id_t BaseGraph<_VertexVal, _EdgeVal>::createVertex(_VertexVal val) {
 }
 
 template <typename _VertexVal, typename _EdgeVal>
-bool BaseGraph<_VertexVal, _EdgeVal>::containsVertex(vertex_id_t id) {
+_VertexVal BaseGraph<_VertexVal, _EdgeVal>::getVertexValue(vertex_id_t id) {
 	LG_REQ_COND(
-		!vertices->contains(id),
+		vertices->contains(id),
 		std::invalid_argument("Vertex " + std::to_string(id) + " is not in graph"));
 
+	return vertices->getData(id);
+}
+
+template <typename _VertexVal, typename _EdgeVal>
+bool BaseGraph<_VertexVal, _EdgeVal>::containsVertex(vertex_id_t id) {
 	return vertices->contains(id);
 }
 
 template <typename _VertexVal, typename _EdgeVal>
 void BaseGraph<_VertexVal, _EdgeVal>::removeVertex(vertex_id_t id) {
 	LG_REQ_COND(
-		!vertices->contains(id),
+		vertices->contains(id),
 		std::invalid_argument("Vertex " + std::to_string(id) + " is not in graph"));
 
 	vertices->removeData(id);

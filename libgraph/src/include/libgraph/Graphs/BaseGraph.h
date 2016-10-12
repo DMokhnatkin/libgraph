@@ -3,6 +3,7 @@
 #include <libgraph/private/constants.h>
 #include <libgraph/IGraph.h>
 #include <libgraph/Connectors/BaseConnector.h>
+#include <array>
 
 namespace libgraph {
 	template <typename _VertexVal, typename _EdgeVal>
@@ -11,9 +12,16 @@ namespace libgraph {
 		BaseConnector<_EdgeVal> * connector;
 		FreeIdCollection<_VertexVal> * vertices;
 	public:
-		BaseGraph() {
-			connector = new BaseConnector<_EdgeVal>();
-			vertices = new FreeIdCollection<_VertexVal>();
+		BaseGraph() :
+			connector(new BaseConnector<_EdgeVal>()),
+			vertices(new FreeIdCollection<_VertexVal>()) {
+		}
+		template<typename _CollectionType>
+		BaseGraph(_CollectionType initVert) :
+			connector(new BaseConnector<_EdgeVal>()),
+			vertices(new FreeIdCollection<_VertexVal>()) {
+			for (auto i = initVert.begin(); i != initVert.end(); i++)
+				vertices->addData(*i);
 		}
 		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) override;
 		virtual void disconnect(vertex_id_t v1, vertex_id_t v2) override;
@@ -26,12 +34,13 @@ namespace libgraph {
 		virtual void clear() override;
 		virtual vertex_id_t getVertexCount() override;
 		virtual vertex_id_t createVertex(_VertexVal) override;
+		virtual _VertexVal getVertexValue(vertex_id_t id) override;
 		virtual bool containsVertex(vertex_id_t id) override;
 		virtual void removeVertex(vertex_id_t id) override;
 		virtual ~BaseGraph() {
 			delete connector;
 			delete vertices;
-		};
+		}
 	};
 };
 

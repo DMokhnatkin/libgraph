@@ -9,6 +9,7 @@ namespace libgraph {
 	public:
 		virtual vertex_id_t getVertexCount() = 0;
 		virtual vertex_id_t createVertex(_VertexValue) = 0;
+		virtual _VertexValue getVertexValue(vertex_id_t id) = 0;
 		virtual bool containsVertex(vertex_id_t id) = 0;
 		virtual void removeVertex(vertex_id_t id) = 0;
 		virtual ~IVertexStorage() { };
