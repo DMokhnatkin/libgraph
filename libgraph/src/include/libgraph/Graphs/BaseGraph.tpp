@@ -6,6 +6,19 @@
 using namespace libgraph;
 
 template <typename _VertexVal, typename _EdgeVal>
+template <typename _VertCollectionType, typename _EdgeCollectionType>
+void BaseGraph<_VertexVal, _EdgeVal>::initialize(_VertCollectionType initVert, _EdgeCollectionType initEdges) {
+	for (auto i = initVert.begin(); i != initVert.end(); i++)
+		vertices->addData(*i);
+	using tpl = std::tuple<vertex_id_t, vertex_id_t, _EdgeVal>;
+	for (auto i = initEdges.begin(); i != initEdges.end(); i++)
+		connect(
+			std::get<0>(static_cast<tpl>(*i)),
+			std::get<1>(static_cast<tpl>(*i)),
+			std::get<2>(static_cast<tpl>(*i)));
+}
+
+template <typename _VertexVal, typename _EdgeVal>
 edge_id_t BaseGraph<_VertexVal, _EdgeVal>::connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) {
 	LG_REQ_COND(
 		vertices->contains(v1), 

@@ -16,13 +16,8 @@ namespace libgraph {
 			connector(new BaseConnector<_EdgeVal>()),
 			vertices(new FreeIdCollection<_VertexVal>()) {
 		}
-		template<typename _CollectionType>
-		BaseGraph(_CollectionType initVert) :
-			connector(new BaseConnector<_EdgeVal>()),
-			vertices(new FreeIdCollection<_VertexVal>()) {
-			for (auto i = initVert.begin(); i != initVert.end(); i++)
-				vertices->addData(*i);
-		}
+		template<typename _VertCollectionType, typename _EdgeCollectionType>
+		void initialize(_VertCollectionType initVert, _EdgeCollectionType initEdges);
 		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) override;
 		virtual void disconnect(vertex_id_t v1, vertex_id_t v2) override;
 		virtual void disconnect(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) override;
