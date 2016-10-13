@@ -38,6 +38,7 @@ namespace libgraph {
 		/**
 		* \brief Create element with given data.
 		* 
+		* O(1) time complexity (amortized).
 		* \param data Data to store in element.
 		* \return ID of given element.
 		*/
@@ -46,6 +47,7 @@ namespace libgraph {
 		/**
 		* \brief Check if given id is in collection.
 		* 
+		* O(1) time complexity (amortized).
 		* \param id element id to check.
 		* \return true if exists, false if not.
 		*/
@@ -54,6 +56,7 @@ namespace libgraph {
 		/**
 		* \brief Get data from given element id.
 		* 
+		* O(1) time complexity (amortized).
 		* \param id Element id.
 		* \throw std::invalid_argument If key is not in collection.
 		* \return Data if key exists in collection.
@@ -66,6 +69,7 @@ namespace libgraph {
 		* Delete element from collection by id. By default,
 		* element will be removed from collection, and it's id will be pushed to free ids.
 		* (so collection size will not be reduced).
+		* O(1) time complexity (amortized).
 		* \param v Id of element to delete.
 		* \return False if element is not in collection, true if deletion is successful.
 		*/
