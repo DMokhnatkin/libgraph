@@ -22,6 +22,10 @@ namespace libgraph {
 		}
 	};
 
+	/**
+	 * \brief Queue implementation using ring buffer.
+	 * \tparam _ValType a type of values in buffer.
+	 */
 	template<typename _ValType>
 	class RingBuffer {
 	private:
@@ -29,8 +33,26 @@ namespace libgraph {
 		std::vector<_ValType> data;
 	public:
 		RingBuffer(int size);
+		/**
+		 * \brief push value in buffer.
+		 * 
+		 * O(1) time complexity.
+		 * \param val 
+		 */
 		void push(_ValType val);
+
+		/**
+		* \brief get value from buffer.
+		* 
+		* O(1) time complexity.
+		*/
 		_ValType pop();
+
+		/**
+		* \brief get count if items in buffer.
+		*
+		* O(1) time complexity.
+		*/
 		int Count();
 	};
 }
