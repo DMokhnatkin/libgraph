@@ -125,7 +125,9 @@
   <ItemGroup>
     <ClCompile Include="src\Connectors\IConnectorTest.cpp" />
     <ClCompile Include="src\DataStorages\FreeIdCollectionTest.cpp" />
+    <ClCompile Include="src\Graphs\BaseGraphTest.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Paths\Shortest\ShortestPathTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

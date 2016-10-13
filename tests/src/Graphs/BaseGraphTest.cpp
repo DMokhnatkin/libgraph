@@ -9,10 +9,10 @@ using namespace libgraph;
 class BaseGraphTest : public ::testing::Test {
 protected:
 	BaseGraph<std::string, std::string> *graph;
-	virtual void SetUp() override{
+	virtual void SetUp() override {
 		graph = new BaseGraph<std::string, std::string>();
 	}
-	virtual void TearDown() override{
+	virtual void TearDown() override {
 		delete graph;
 	}
 };

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
@@ -19,6 +20,12 @@ class IConnectorTest : public ::testing::Test {
 protected:
 	virtual void SetUp() override {
 		coll = new T();
+		if (std::is_same<T, BaseGraph<EmptyValue, EmptyValue>>::value) {
+			std::array<EmptyValue, 8> vert;
+			vert.fill(EmptyValue());
+			std::array<BaseGraph<EmptyValue, EmptyValue>::EdgeInitTuple, 0> edges;
+			static_cast<BaseGraph<EmptyValue, EmptyValue>*>(coll)->initialize(vert, edges);
+		}
 	};
 	virtual void TearDown() override{
 		delete coll;
