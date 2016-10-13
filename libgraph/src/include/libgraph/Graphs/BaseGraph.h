@@ -12,6 +12,8 @@ namespace libgraph {
 		BaseConnector<_EdgeVal> * connector;
 		FreeIdCollection<_VertexVal> * vertices;
 	public:
+		using EdgeInitTuple = std::tuple<vertex_id_t, vertex_id_t, _EdgeVal>;
+
 		BaseGraph() :
 			connector(new BaseConnector<_EdgeVal>()),
 			vertices(new FreeIdCollection<_VertexVal>()) {
