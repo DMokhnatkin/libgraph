@@ -29,31 +29,62 @@ namespace libgraph {
 	template<typename _ValType>
 	class RingBuffer {
 	private:
-		int front, back;
+		int top, back;
 		std::vector<_ValType> data;
 	public:
 		RingBuffer(int size);
 		/**
-		 * \brief push value in buffer.
+		 * \brief push value in buffer's back.
 		 * 
 		 * O(1) time complexity.
 		 * \param val 
 		 */
-		void push(_ValType val);
+		void push_back(_ValType val);
 
 		/**
-		* \brief get value from buffer.
+		* \brief push value in buffer's top.
+		*
+		* O(1) time complexity.
+		* \param val
+		*/
+		void push_top(_ValType val);
+
+		/**
+		* \brief get value from buffer's top.
 		* 
 		* O(1) time complexity.
 		*/
-		_ValType pop();
+		_ValType pop_top();
+
+		/**
+		* \brief get value from buffer's back.
+		*
+		* O(1) time complexity.
+		*/
+		_ValType pop_back();
+
+
+		/**
+		 * \brief is buffer empty.
+		 * 
+		 * O(1) time complexity.
+		 */
+		bool isEmpty();
+
+
+		/**
+		 * \brief is buffer full.
+		 * 
+		 * O(1) time complexity.
+		 */
+		bool isFull();
 
 		/**
 		* \brief get count if items in buffer.
 		*
 		* O(1) time complexity.
 		*/
-		int Count();
+		int count();
 	};
 }
 
