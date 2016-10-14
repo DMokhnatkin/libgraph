@@ -51,11 +51,19 @@
     <ClInclude Include="src\include\libgraph\private\contracts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\libgraph\Paths\Shortest\FromOneVertex\LevitsAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\libgraph\DataStorages\RingBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
     <None Include="src\include\libgraph\Graphs\BaseGraph.tpp" />
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
+    <None Include="src\include\libgraph\Paths\Shortest\FromOneVertex\LevitsAlgorithm.tpp" />
+    <None Include="src\include\libgraph\DataStorages\RingBuffer.tpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib.cpp">

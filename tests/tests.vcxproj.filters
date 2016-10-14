@@ -30,10 +30,13 @@
     <ClCompile Include="src\Connectors\IConnectorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Paths\Shortest\ShortestPathTest.cpp">
+    <ClCompile Include="src\Graphs\BaseGraphTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphs\BaseGraphTest.cpp">
+    <ClCompile Include="src\DataStorages\RingBufferTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paths\Shortest\ShortestPathTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

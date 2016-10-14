@@ -71,11 +71,13 @@
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h" />
     <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h" />
     <ClInclude Include="src\include\libgraph\Connectors\IConnector.h" />
+    <ClInclude Include="src\include\libgraph\DataStorages\RingBuffer.h" />
     <ClInclude Include="src\include\libgraph\Globals.h" />
     <ClInclude Include="src\include\libgraph\Graphs\BaseGraph.h" />
     <ClInclude Include="src\include\libgraph\IDataStorage.h" />
     <ClInclude Include="src\include\libgraph\IGraph.h" />
     <ClInclude Include="src\include\libgraph\IVertexStorage.h" />
+    <ClInclude Include="src\include\libgraph\Paths\Shortest\FromOneVertex\LevitsAlgorithm.h" />
     <ClInclude Include="src\include\libgraph\private\constants.h" />
     <ClInclude Include="src\include\libgraph\private\contracts.h" />
     <ClInclude Include="src\include\libgraph\private\decls.h" />
@@ -84,7 +86,9 @@
   <ItemGroup>
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
+    <None Include="src\include\libgraph\DataStorages\RingBuffer.tpp" />
     <None Include="src\include\libgraph\Graphs\BaseGraph.tpp" />
+    <None Include="src\include\libgraph\Paths\Shortest\FromOneVertex\LevitsAlgorithm.tpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib.cpp" />
