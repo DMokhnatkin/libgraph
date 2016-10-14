@@ -148,3 +148,8 @@ void BaseGraph<_VertexVal, _EdgeVal>::removeVertex(vertex_id_t id) {
 
 	vertices->removeData(id);
 }
+
+template <typename _VertexVal, typename _EdgeVal>
+vertex_id_t BaseGraph<_VertexVal, _EdgeVal>::getMaxId() {
+	return vertices->getMaxId();
+}

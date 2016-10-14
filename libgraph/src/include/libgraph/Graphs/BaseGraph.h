@@ -34,6 +34,7 @@ namespace libgraph {
 		virtual _VertexVal getVertexValue(vertex_id_t id) override;
 		virtual bool containsVertex(vertex_id_t id) override;
 		virtual void removeVertex(vertex_id_t id) override;
+		virtual vertex_id_t getMaxId() override;
 		virtual ~BaseGraph() {
 			delete connector;
 			delete vertices;
