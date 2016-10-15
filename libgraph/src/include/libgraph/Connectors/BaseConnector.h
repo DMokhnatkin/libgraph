@@ -6,7 +6,7 @@
 #include <libgraph/private/constants.h>
 #include <libgraph/private/windll.h>
 
-#include <libgraph/Connectors/IConnector.h>
+#include <libgraph/Connectors/IGraphConnector.h>
 #include <libgraph/DataStorages/FreeIdCollection.h>
 #include <libgraph/Globals.h>
 #include <libgraph/Globals.h>
@@ -18,7 +18,7 @@ namespace libgraph {
 	class BaseConnectorEdgesIter;
 
 	template <typename _EdgeVal>
-	class BaseConnector : public IConnector<_EdgeVal> {
+	class BaseConnector : public IGraphConnector<_EdgeVal> {
 	private:
 		FreeIdCollection<_EdgeVal> *edges;
 		std::unordered_map<vertex_id_t, std::unordered_map<vertex_id_t, std::unordered_set<edge_id_t>>> *connections;
@@ -69,7 +69,6 @@ namespace libgraph {
 		* \return true if are connected by edge with id=edgeId.
 		*/
 		virtual bool areConnected(vertex_id_t v1, vertex_id_t v2, edge_id_t edgeId) override;
-
 
 		/**
 		 * \brief get value saved in edge.

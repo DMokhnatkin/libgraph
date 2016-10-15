@@ -68,9 +68,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\libgraph\Connectors\IConnector.h" />
+    <ClInclude Include="src\include\libgraph\Connectors\Trees\ITreeConnector.h" />
     <ClInclude Include="src\include\libgraph\DataStorages\FreeIdCollection.h" />
     <ClInclude Include="src\include\libgraph\Connectors\BaseConnector.h" />
-    <ClInclude Include="src\include\libgraph\Connectors\IConnector.h" />
+    <ClInclude Include="src\include\libgraph\Connectors\IGraphConnector.h" />
     <ClInclude Include="src\include\libgraph\DataStorages\RingBuffer.h" />
     <ClInclude Include="src\include\libgraph\Globals.h" />
     <ClInclude Include="src\include\libgraph\Graphs\BaseGraph.h" />
@@ -84,6 +86,7 @@
     <ClInclude Include="src\include\libgraph\private\windll.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="src\include\libgraph\Connectors\BaseConnector.tpp" />
     <None Include="src\include\libgraph\DataStorages\FreeIdCollection.tpp" />
     <None Include="src\include\libgraph\DataStorages\RingBuffer.tpp" />

@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <libgraph/Connectors/IConnector.h>
+#include <libgraph/Connectors/IGraphConnector.h>
 #include <libgraph/Connectors/BaseConnector.h>
 #include <libgraph/Graphs/BaseGraph.h>
 #include <libgraph/Globals.h>
@@ -31,7 +31,7 @@ protected:
 		delete coll;
 	};
 public:
-	IConnector<EmptyValue> * coll;
+	IGraphConnector<EmptyValue> * coll;
 };
 
 TYPED_TEST_CASE(IConnectorTest, Implementations);
