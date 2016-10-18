@@ -15,6 +15,15 @@ namespace libgraph {
 	private:
 	public:
 		/**
+		* \brief Connect two vertices.
+		* \param v1 a source vertex.
+		* \param v2 a destination vertex.
+		* \param edgeVal some value to add to created edge.
+		* \return an id of created edge.
+		*/
+		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) = 0;
+
+		/**
 		* \brief Remove one edge with specifed id.
 		* \param v1 a source vertex.
 		* \param v2 a destination vertex.
@@ -49,7 +58,6 @@ namespace libgraph {
 		*/
 		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t v1, vertex_id_t v2) = 0;
 
-		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) override = 0;
 		virtual void disconnect(vertex_id_t v1, vertex_id_t v2) override = 0;
 		virtual bool areConnected(vertex_id_t v1, vertex_id_t v2) override = 0;
 		virtual IIterator<EdgeTuple>* createEdgesIter(vertex_id_t v1) override = 0;

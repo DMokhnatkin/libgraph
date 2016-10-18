@@ -14,6 +14,20 @@ namespace libgraph {
 	private:
 	public:
 		/**
+		* \brief Connect two vertices.
+		* \param v1 a source vertex.
+		* \param v2 a destination vertex.
+		* \param edgeVal some value to add to created edge.
+		* \return an id of created edge.
+		*/
+		virtual void connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) = 0;
+
+		/**
+		 * \brief get root of tree
+		 */
+		virtual vertex_id_t getRoot() = 0;
+
+		/**
 		 * \brief get edge value
 		 * \param parent a vertex 1
 		 * \param child a vertex 2
@@ -28,7 +42,6 @@ namespace libgraph {
 		 */
 		virtual inline IIterator<EdgeTuple> * getChilds(vertex_id_t p) = 0;
 
-		virtual edge_id_t connect(vertex_id_t parent, vertex_id_t child, _EdgeVal edgeVal) override = 0;
 		virtual void disconnect(vertex_id_t parent, vertex_id_t child) override = 0;
 		virtual bool areConnected(vertex_id_t parent, vertex_id_t child) override = 0;
 		virtual IIterator<EdgeTuple> * createEdgesIter(vertex_id_t parent) override = 0;

@@ -36,15 +36,6 @@ namespace libgraph {
 	private:
 	public:
 		/**
-		* \brief Connect two vertices.
-		* \param v1 a source vertex.
-		* \param v2 a destination vertex.
-		* \param edgeVal some value to add to created edge.
-		* \return an id of created edge.
-		*/
-		virtual edge_id_t connect(vertex_id_t v1, vertex_id_t v2, _EdgeVal edgeVal) = 0;
-
-		/**
 		* \brief Remove all edges between two vertices.
 		* \param v1 a source vertex.
 		* \param v2 a destination vertex.
